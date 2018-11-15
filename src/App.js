@@ -12,20 +12,14 @@ const appRoot = document.getElementById("app");
 
 const store = configureStore();
 
-store.dispatch(addExpense({ description: 'Water bill', amount: 500 }));
+store.dispatch(addExpense({ description: 'Water bill', amount: 4500 }));
 store.dispatch(addExpense({ description: 'Gas bill', amount: 200 }));
-store.dispatch(setTextFilter('bill'));
+store.dispatch(setTextFilter('water'));
 
 setTimeout(() => {
-  store.dispatch(setTextFilter('rent'));
+  store.dispatch(setTextFilter('bill'));
 }, 3000)
 
-let { expenses, filters } = store.getState();
-console.log(getVisibleExpenses(expenses, filters));
-store.dispatch(setTextFilter('water'));
-expenses = store.getState().expenses;
-filters = store.getState().filters;
-console.log(getVisibleExpenses(store.getState().expenses, store.getState().filters));
 
 const jsx = (
   <Provider store={store}>
